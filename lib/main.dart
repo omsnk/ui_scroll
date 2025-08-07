@@ -23,21 +23,79 @@ class MyHomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<String> items = List.generate(50, (i) => 'Item ${i + 1}');
-
     return Scaffold(
       appBar: AppBar(title: Text('Chapter 6'), backgroundColor: Colors.blue),
-      body: ListView.builder(
-        itemCount: items.length,
-        itemBuilder: (BuildContext context, int index) {
-          return ListTile(
-            title: Text(items[index]),
-            subtitle: Text('Click ${items[index]}'),
-            onTap: () {
-              print(items[index]);
-            },
-          );
-        },
+      body: Stack(
+        alignment:
+            Alignment.center, // จัดกึ่งกลาง children ที่ไม่ได้กำหนดตำแหน่ง
+        children: <Widget>[
+          // รูปภาพพื้นหลัง
+          Image.network(
+            'https://picsum.photos/id/1015/300/300',
+            fit: BoxFit.cover,
+          ),
+          // Text ที่กำหนดตำแหน่งไว้มุมบนซ้าย
+          Positioned(
+            top: 10.0,
+            left: 10.0,
+            child: Container(
+              padding: const EdgeInsets.all(8.0),
+              color: Colors.black.withOpacity(0.5), // พื้นหลังกึ่งโปร่งใส
+              child: const Text(
+                'Top Left',
+                style: TextStyle(color: Colors.white),
+              ),
+            ),
+          ),
+
+          Positioned(
+            top: 10.0,
+            right: 10.0,
+            child: Container(
+              padding: const EdgeInsets.all(8.0),
+              color: Colors.black.withOpacity(0.5), // พื้นหลังกึ่งโปร่งใส
+              child: const Text(
+                'Top Right',
+                style: TextStyle(color: Colors.white),
+              ),
+            ),
+          ),
+
+          // Icon ที่กำหนดตำแหน่งไว้มุมล่างขวา
+          Positioned(
+            bottom: 10.0,
+            right: 10.0,
+            child: Container(
+              padding: const EdgeInsets.all(4.0),
+              decoration: BoxDecoration(
+                color: Colors.red,
+                shape: BoxShape.circle, // ทำให้เป็นป้ายวงกลม
+              ),
+              child: const Icon(
+                Icons.notifications,
+                color: Colors.white,
+                size: 20,
+              ),
+            ),
+          ),
+
+          Positioned(
+            bottom: 10.0,
+            left: 10.0,
+            child: Container(
+              padding: const EdgeInsets.all(4.0),
+              decoration: BoxDecoration(
+                color: Colors.red,
+                shape: BoxShape.circle, // ทำให้เป็นป้ายวงกลม
+              ),
+              child: const Icon(
+                Icons.notifications,
+                color: Colors.white,
+                size: 20,
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }

@@ -23,19 +23,26 @@ class MyHomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<String> items = List.generate(51, (i) => 'Item ${i + 1}');
+    List<String> items = List.generate(100, (i) => 'Item ${i + 1}');
 
     return Scaffold(
-      appBar: AppBar(title: Text('Chapter 6'), backgroundColor: Colors.blue),
+      appBar: AppBar(
+        title: Text('Chapter 6'),
+        backgroundColor: Colors.green.shade600,
+      ),
       body: GridView.builder(
+        padding: EdgeInsets.all(10.0),
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 3,
+          mainAxisSpacing: 5.0,
+          crossAxisSpacing: 5.0,
+          childAspectRatio: 1.2,
         ),
         itemCount: items.length,
         itemBuilder: (BuildContext context, int idx) {
           return Container(
-            color: Colors.green[100 + (idx % 8) * 100],
-            child: Text(items[idx]),
+            color: Colors.green[100 + (idx % 6) * 100],
+            child: Center(child: Text(items[idx])),
           );
         },
       ),

@@ -27,18 +27,17 @@ class MyHomePage extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(title: Text('Chapter 6'), backgroundColor: Colors.blue),
-      body: GridView.count(
-        crossAxisCount: 3, // 3 คอลัมน์ ระยะห่างแนวนอน
-        mainAxisSpacing: 8.0,
-        crossAxisSpacing: 8.0,
-        padding: EdgeInsets.all(8.0),
-        children: List<Widget>.generate(51, (index) {
-          // สร้างไอเท็มตัวอย่าง 20 อัน
-          return Container(
-            color: Colors.teal[100 + (index % 8) * 100],
-            child: Center(child: Text('Item $index')),
+      body: ListView.builder(
+        itemCount: items.length,
+        itemBuilder: (BuildContext context, int index) {
+          return ListTile(
+            title: Text(items[index]),
+            subtitle: Text('Click ${items[index]}'),
+            onTap: () {
+              print(items[index]);
+            },
           );
-        }),
+        },
       ),
     );
   }
